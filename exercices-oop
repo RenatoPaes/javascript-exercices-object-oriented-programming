@@ -1,0 +1,146 @@
+Working with Object Literals:
+
+
+
+Challenge 1 ---------------------------------------
+
+function makePerson(name, age) {
+  const person = {};
+  person.name = name;
+  person.age = age;
+  return person
+}
+
+const vicky = makePerson('Vicky', 24);
+
+console.log(vicky.name); // -> Logs 'Vicky'
+console.log(vicky.age); // -> Logs 24
+
+
+
+Using Object.create:
+
+
+
+Challenge 1/3 ---------------------------------------
+
+const personStore = {
+  greet: function() {console.log("hello")}
+}
+
+personStore.greet(); // -> Logs 'hello'
+
+Challenge 2/3 ---------------------------------------
+
+const personStore = {
+  greet: function() {console.log("hello")}
+}
+
+personStore.greet(); // -> Logs 'hello'
+
+const personFromPersonStore = (name, age) => {
+  const user = Object.create(personStore);
+  user.name = name;
+  user.age = age;
+  return user;
+}
+
+const sandra = personFromPersonStore('Sandra', 26);
+console.log(sandra.name); // -> Logs 'Sandra'
+console.log(sandra.age); //-> Logs 26
+sandra.greet(); //-> Logs 'hello'
+
+Challenge 3/3 ---------------------------------------
+
+const personStore = {
+  greet: function() {console.log("hello")}
+}
+
+personStore.greet(); // -> Logs 'hello'
+
+const personFromPersonStore = (name, age) => {
+  const user = Object.create(personStore);
+  user.name = name;
+  user.age = age;
+  return user;
+}
+
+const sandra = personFromPersonStore('Sandra', 26);
+console.log(sandra.name); // -> Logs 'Sandra'
+console.log(sandra.age); //-> Logs 26
+sandra.greet(); //-> Logs 'hello'
+
+personStore.introduce = function() {
+  console.log("Hi, my name is " + this.name);
+}
+
+sandra.introduce();
+
+Using the NEW keyword:
+
+
+
+Challenge 1/3 ---------------------------------------
+
+function PersonConstructor(name) {
+  this.name = name;
+  this.greet = function() {console.log('hello');}
+};
+
+const simon = new PersonConstructor;
+simon.greet(); // -> Logs 'hello'
+
+Challenge 2/3 ---------------------------------------
+
+function personFromConstructor(name, age) {
+  const user = new PersonConstructor;
+  user.name = name;
+  user.age = age;
+  return user;
+}
+
+const mike = personFromConstructor('Mike', 30);
+
+console.log(mike.name); // -> Logs 'Mike'
+console.log(mike.age); //-> Logs 30
+mike.greet(); //-> Logs 'hello'
+
+Challenge 3/3 ---------------------------------------
+
+PersonConstructor.prototype.introduce = function () { console.log("Hi, my name is " + this.name);}
+
+mike.introduce(); // -> Logs 'Hi, my name is Mike'
+
+
+
+
+Using ES6 Classes:
+
+
+
+Challenge 1/2 ---------------------------------------
+
+class PersonClass {
+  constructor(name){
+    this.name = name;
+  }
+  greet() { console.log("hello") ;}
+}
+
+const user1 = new PersonClass();
+
+user1.greet()
+
+Challenge 2/2 ---------------------------------------
+
+class DeveloperClass extends PersonClass {
+  constructor(name, age) {
+    super(name);
+    this.age = age;
+  }
+  introduce() {
+    console.log(`Hello World, my name is ${this.name}`);
+  }
+}
+const thai = new DeveloperClass('Thai', 32);
+thai.introduce(); //-> Logs 'Hello World, my name is Thai'
